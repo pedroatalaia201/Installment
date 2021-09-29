@@ -1,0 +1,16 @@
+C:\Pedro\Installment\obj\Debug\net5.0\Installment.csproj.AssemblyReference.cache
+C:\Pedro\Installment\obj\Debug\net5.0\Installment.GeneratedMSBuildEditorConfig.editorconfig
+C:\Pedro\Installment\obj\Debug\net5.0\Installment.AssemblyInfoInputs.cache
+C:\Pedro\Installment\obj\Debug\net5.0\Installment.AssemblyInfo.cs
+C:\Pedro\Installment\obj\Debug\net5.0\Installment.csproj.CoreCompileInputs.cache
+C:\Pedro\Installment\bin\Debug\net5.0\Installment.exe
+C:\Pedro\Installment\bin\Debug\net5.0\Installment.deps.json
+C:\Pedro\Installment\bin\Debug\net5.0\Installment.runtimeconfig.json
+C:\Pedro\Installment\bin\Debug\net5.0\Installment.runtimeconfig.dev.json
+C:\Pedro\Installment\bin\Debug\net5.0\Installment.dll
+C:\Pedro\Installment\bin\Debug\net5.0\ref\Installment.dll
+C:\Pedro\Installment\bin\Debug\net5.0\Installment.pdb
+C:\Pedro\Installment\obj\Debug\net5.0\Installment.dll
+C:\Pedro\Installment\obj\Debug\net5.0\ref\Installment.dll
+C:\Pedro\Installment\obj\Debug\net5.0\Installment.pdb
+C:\Pedro\Installment\obj\Debug\net5.0\Installment.genruntimeconfig.cache

@@ -1,67 +1,71 @@
 ﻿using System;
 using System.Globalization;
 using System.Collections.Generic;
-					
-public class Program
+using Installment.Entities;
+
+namespace Installment
 {
-	public static void Main()
+	public class Program
 	{
-		PaymentManager manager = new PaymentManager();
-		bool sys = true;
-		while(sys == true)
+		public static void Main(string[] args)
 		{
-			Console.WriteLine("Options:\n1-Registrer a new costumer\n2-Add a new debt");
-			Console.WriteLine("3-Add payment\n4-List of clients\n5-Logout");
-			
-			int option = int.Parse(Console.ReadLine());
-			
-			switch (option)
+			PaymentManager manager = new PaymentManager();
+			bool sys = true;
+			while(sys == true)
 			{
-				case 1:
+				Console.WriteLine("Options:\n1-Registrer a new costumer\n2-Add a new debt");
+				Console.WriteLine("3-Add payment\n4-List of clients\n5-Logout");
+
+				int option = int.Parse(Console.ReadLine());
+			
+				switch (option)
 				{
-					manager.AddClient();
-					break;
-				}					
-				case 2:
-				{
-					manager.AddInstallment();
-					break;
-				}
-				case 3:
-				{
-					manager.RegisterPayment();
-					break;
-				}
-				case 4:
-				{
-					manager.PrintList();
-					Console.Clear();
-					break;
-				}
-				case 5:
-				{
-					Console.Clear();
-					Console.WriteLine("\n\nBye");
-					Console.ReadLine();
-					Console.Clear();
-					sys = false;
-					break;
-				}
-				default:
-				{
-					InvalidOption(option);
-					break;
-				}
+					case 1:
+					{
+						manager.AddClient();
+						break;
+					}					
+					case 2:
+					{
+						manager.AddInstallment();
+						break;
+					}
+					case 3:
+					{
+						manager.RegisterPayment();
+						break;
+					}
+					case 4:
+					{
+						manager.PrintList();
+						Console.Clear();
+						break;
+					}
+					case 5:
+					{
+						Console.Clear();
+						Console.WriteLine("\n\nBye");
+						Console.ReadLine();	
+						Console.Clear();
+						sys = false;
+						break;
+					}
+					default:
+					{
+						InvalidOption(option);
+						break;
+					}
 					
+				}
 			}
 		}
-	}
 	
-	static void InvalidOption(int option)
-	{
-		Console.WriteLine("\nthe option " + option + " is not valid\n\n");
-		Console.ReadLine();
-		Console.Clear();
-		return;
+		static void InvalidOption(int option)
+		{
+			Console.WriteLine("\nthe option " + option + " is not valid\n\n");
+			Console.ReadLine();
+			Console.Clear();
+			return;
+		}
 	}
-}
+}					
