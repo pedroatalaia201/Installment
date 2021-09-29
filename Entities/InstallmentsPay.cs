@@ -2,15 +2,15 @@ using System;
 
 namespace Installment.Entities
 {
-	public class Installments
+	public class InstallmentsPay
 	{
 		public DateTime Date {get;set;}
 		public double Value {get; private set;}
 		public bool State {get; private set;}
 	
-		public Installments(){}
+		public InstallmentsPay(){}
 	
-		public Installments(DateTime date, double value)
+		public InstallmentsPay(DateTime date, double value)
 		{
 			Date = date;
 			Value = value;

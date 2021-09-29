@@ -6,21 +6,29 @@ namespace Installment.Entities
 {
 	public class PaymentManager : IServices 
 	{
-		public List<Client> Clients{get; private set;}
+		public List<Client> Clients{get; set;} = new List<Client>();
+		
 	
 		public void AddClient()
 		{
 			Console.Clear();
-			Client client = new Client();
-
-			Console.WriteLine("Wrtie the name of the client:");
+			
+			Console.WriteLine("Write the name of the client:");
 			string name = Console.ReadLine();
-		
+
+			/*
+			Clients.Add(new Client(id, name));
+			Console.WriteLine("\n\nThe client is registred:");
+			Console.WriteLine("Client name: " + name + ", Id: " + id);
+			Console.WriteLine("press Enter to continue...");*/
+
+			//Erro ao adicionar um new Client(id, name, int);
+
 			Console.WriteLine("There will be a installmet for this client?(y/n)");
 			char op = char.Parse(Console.ReadLine());
 			Random rand = new Random();
 			int id = rand.Next();
-		
+
 			if(op == 'y')
 			{
 				Console.Write("Data of the installment(dd/mm/yyyy): ");
@@ -28,16 +36,20 @@ namespace Installment.Entities
 				Console.Write("The value of the installment: ");
 				double value = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 			
-				Installments inst = new Installments(date, value);
+				InstallmentsPay inst = new InstallmentsPay(date, value);
 					
-				//client = new Client(id, name, inst);
 			 	Clients.Add(new Client(id, name, inst));
-				Console.WriteLine("\n\nThe client is registred\nPress enter to continue");
+				Console.WriteLine("\n\nThe client is registred:");
+				Console.WriteLine("Client name: " + name + ", Id: " + id);
+				Console.WriteLine("With a installment of U$: " + value.ToString("F2", CultureInfo.InvariantCulture));
+				Console.WriteLine("press Enter to continue...");
 			}
 			else
 			{
 				Clients.Add(new Client(id, name));
-				Console.WriteLine("\n\nThe client is registred\nPress enter to continue");
+				Console.WriteLine("\n\nThe client is registred:");
+				Console.WriteLine("Client name: " + name + ", Id: " + id);
+				Console.WriteLine("press Enter to continue...");
 			}
 		
 			Console.ReadLine();
@@ -61,7 +73,11 @@ namespace Installment.Entities
 			foreach(Client client in Clients)
 			{
 				Console.WriteLine("Client: " + client.ClientName + ", Id: " + client.Id);
+				Console.WriteLine("With a total of intallments U$: " + client.GetTotalInstallments().ToString("F2", CultureInfo.InvariantCulture));
+				Console.WriteLine();
 			}
+			Console.WriteLine("\npress Enter to exit...");
+			Console.ReadLine();
 		}
 	
 	}

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Installment.Entities
@@ -6,7 +7,7 @@ namespace Installment.Entities
 	{
 		public string ClientName {get; set;}
 		public int Id {get; private set;}
-		public List<Installments> Installment{get; set;}
+		public List<InstallmentsPay> Installments{get; set;} = new List<InstallmentsPay>();
 	
 		public Client(){}
 	
@@ -17,11 +18,26 @@ namespace Installment.Entities
 			//Installment.Add(null);
 		}
 	
-		public Client(int id, string name, Installments installment)
+		public Client(int id, string name, InstallmentsPay installment)
 		{
 			ClientName = name;
 			Id = id;
-			Installment.Add(installment);
+			Installments.Add(installment);
+		}
+
+		public override string ToString()
+		{
+			return "Client name: " + ClientName + ", Id: " + Id;
+		}
+
+		public double GetTotalInstallments()
+		{
+			double total = 0;
+			foreach(InstallmentsPay pay in Installments)
+			{
+				total += pay.Value;
+			}
+			return total;
 		}
 	}
 }
