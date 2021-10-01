@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Installment.Entities
 {
-	public class Client
+	public class Client : IComparable
 	{
 		public string ClientName {get; set;}
 		public int Id {get; private set;}
@@ -38,6 +38,17 @@ namespace Installment.Entities
 				total += pay.Value;
 			}
 			return total;
+		}
+
+		public int CompareTo(object obj)
+		{
+			Client other = obj as Client;
+			return Id.CompareTo(other.Id);
+		}
+
+		public void AddNewInst(InstallmentsPay installments)
+		{
+			Installments.Add(installments);
 		}
 	}
 }
