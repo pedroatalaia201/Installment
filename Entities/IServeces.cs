@@ -7,7 +7,7 @@ namespace Installment.Entities
 	{
 		List<Client> Clients {get;}
 
-		void AddClient();
+		void AddClient(int id);
 	
 		void AddInstallment();
 	

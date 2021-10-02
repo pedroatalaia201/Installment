@@ -43,7 +43,7 @@ namespace Installment.Entities
 		public int CompareTo(object obj)
 		{
 			Client other = obj as Client;
-			return Id.CompareTo(other.Id);
+			return ClientName.CompareTo(other.ClientName);
 		}
 
 		public void AddNewInst(InstallmentsPay installments)

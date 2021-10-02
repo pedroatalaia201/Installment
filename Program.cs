@@ -11,6 +11,7 @@ namespace Installment
 		{
 			PaymentManager manager = new PaymentManager();
 			bool sys = true;
+			int id = 001;
 			while(sys == true)
 			{
 				Console.WriteLine("Options:\n1-Registrer a new costumer\n2-Add a new debt");
@@ -22,7 +23,8 @@ namespace Installment
 				{
 					case 1:
 					{
-						manager.AddClient();
+						manager.AddClient(id);
+						id++;
 						break;
 					}					
 					case 2:

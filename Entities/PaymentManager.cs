@@ -9,7 +9,7 @@ namespace Installment.Entities
 		public List<Client> Clients{get; set;} = new List<Client>();
 		
 	
-		public void AddClient()
+		public void AddClient(int id)
 		{
 			Console.Clear();
 			
@@ -18,7 +18,7 @@ namespace Installment.Entities
 			Console.WriteLine("There will be a installmet for this client?(y/n)");
 			char op = char.Parse(Console.ReadLine());
 
-			int id
+			
 
 			if(op == 'y')
 			{
@@ -49,9 +49,10 @@ namespace Installment.Entities
 			Console.Clear();
 			return;
 		}
-	
+	//need to be optimazed....
 		public void AddInstallment()
 		{
+			Console.Clear();
 			int mess = 0;
 
 			Console.WriteLine("Write the data of the client");
@@ -60,7 +61,7 @@ namespace Installment.Entities
 			Console.Write("The id of the client: ");
 			int idSearch = int.Parse(Console.ReadLine());
 			Console.Write("Define the value of this new installment U$: ");
-			double value = double.Parse(Console.ReadLine());
+			double value = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 			Console.Write("The date os this new installment(dd/mm/yyyy): ");
 			DateTime date = DateTime.ParseExact(Console.ReadLine(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
@@ -68,7 +69,7 @@ namespace Installment.Entities
 			{
 				if(client.ClientName == name && client.Id == idSearch)
 				{
-					Console.WriteLine("Well, I guess it works...");
+					client.AddNewInst(new InstallmentsPay(date, value));
 				}
 				else
 				{
@@ -79,13 +80,46 @@ namespace Installment.Entities
 			if(mess == Clients.Capacity)
 			{
 				Console.WriteLine("The client was not found");
+				Console.ReadLine();
+				return;
 			}
-			
+
+			Console.WriteLine("That new debt was registred");
+			Console.WriteLine("press enter to continue...");
+			Console.ReadLine();
+			Console.Clear();
+			return;
 		}
-	
+	//não bastar ter só o código do cliente e o nome, tem de ter o valor do título e mais um atributo
+	//para poder identificar o título a ser pago....
 		public void RegisterPayment()
 		{
-		
+			Console.Clear();
+			Console.WriteLine("Enter the name of the client: ");
+			string name = Console.ReadLine();
+			Console.Write("The Id of the client: ");
+			int id = int.Parse(Console.ReadLine());
+
+			List<Client> clientDebt = new List<Client>();
+
+			foreach(Client client in Clients)
+			{
+				if(client.ClientName == name && client.Id == id)
+				{
+					clientDebt.Add(client);
+				}
+			}
+
+			Console.WriteLine("Selec the installment to be payed: ");
+			for(int i = 0; i < clientDebt.Lenght(); i++)
+			{
+				i + 1;
+				Console.WriteLine(i + "-Client: " + clientDebt.ClientName + ", Id: " + clientDebt.Id +
+				", Installment from " + clientDebt.Installments.Date.ToString("dd/MM/yyyy")) + ", value U$"
+				+ clientDebt.Installments.Value.ToString("F2", CultureInfo.InvariantCulture);
+			}
+
+			Console.ReadLine();
 		}
 	
 		public void PrintList()
