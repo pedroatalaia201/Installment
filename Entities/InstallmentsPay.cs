@@ -16,5 +16,10 @@ namespace Installment.Entities
 			Value = value;
 			State = false;
 		}
+
+		public void GetPayed()
+		{
+			State = true;
+		}
 	}
 }

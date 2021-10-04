@@ -90,8 +90,8 @@ namespace Installment.Entities
 			Console.Clear();
 			return;
 		}
-	//não bastar ter só o código do cliente e o nome, tem de ter o valor do título e mais um atributo
-	//para poder identificar o título a ser pago....
+	
+	//Não consegue acessar os valores Date e Value de InstallmentsPay.
 		public void RegisterPayment()
 		{
 			Console.Clear();
@@ -100,23 +100,14 @@ namespace Installment.Entities
 			Console.Write("The Id of the client: ");
 			int id = int.Parse(Console.ReadLine());
 
-			List<Client> clientDebt = new List<Client>();
-
 			foreach(Client client in Clients)
 			{
 				if(client.ClientName == name && client.Id == id)
 				{
-					clientDebt.Add(client);
-				}
-			}
-
-			Console.WriteLine("Selec the installment to be payed: ");
-			for(int i = 0; i < clientDebt.Lenght(); i++)
-			{
-				i + 1;
-				Console.WriteLine(i + "-Client: " + clientDebt.ClientName + ", Id: " + clientDebt.Id +
-				", Installment from " + clientDebt.Installments.Date.ToString("dd/MM/yyyy")) + ", value U$"
-				+ clientDebt.Installments.Value.ToString("F2", CultureInfo.InvariantCulture);
+					Console.Clear();
+					Console.WriteLine("Installments of the client " + name + ", Id: " + id);
+					client.ListToPay();
+				}			
 			}
 
 			Console.ReadLine();

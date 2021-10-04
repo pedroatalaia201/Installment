@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Collections.Generic;
 
 namespace Installment.Entities
@@ -49,6 +50,38 @@ namespace Installment.Entities
 		public void AddNewInst(InstallmentsPay installments)
 		{
 			Installments.Add(installments);
+		}
+		//criar um metodo para exbir a lista de parcelas aqui....?
+
+		public void ListToPay()
+		{
+			InstallmentsPay[] pay = Installments.ToArray();
+			int aux = pay.Length;
+			int cont = 1;
+
+			for(int i = 0; i < aux; i++)
+			{
+				Console.WriteLine(cont + "-Installment of " + pay[i].Date.ToString("dd/MM/yyyy") + ", Value: "  + pay[i].Value.ToString("F2", CultureInfo.InvariantCulture));
+				if(pay[i].State)
+				{
+					Console.WriteLine("   It's payed");	
+				}
+				else
+				{
+					Console.WriteLine("  Need to be payed");
+				}
+				cont++;
+
+			}	
+			Console.Write("\nSelect  installment to pay: ");
+			var chose = int.Parse(Console.ReadLine());
+
+			if(chose != 0)
+			{
+				pay[chose].GetPayed();
+
+				Console.WriteLine("The installment has been payed.");
+			}
 		}
 	}
 }
