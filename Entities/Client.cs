@@ -74,14 +74,24 @@ namespace Installment.Entities
 
 			}	
 			Console.Write("\nSelect  installment to pay: ");
-			var chose = int.Parse(Console.ReadLine());
+			int chose = int.Parse(Console.ReadLine());
 
-			if(chose != 0)
+			chose = (chose - 1);
+			bool state = pay[chose].CheckPay();
+
+			if(state)
 			{
-				pay[chose].GetPayed();
-
-				Console.WriteLine("The installment has been payed.");
+				Console.WriteLine("The installment payed.");
+				Console.ReadLine();
+				return;
 			}
+			else
+			{
+				Console.WriteLine("This installment has already been payed.");
+				Console.ReadLine();
+				return;
+			}				
+			
 		}
 	}
 }

@@ -17,6 +17,19 @@ namespace Installment.Entities
 			State = false;
 		}
 
+		public bool CheckPay()
+		{
+			if(State == true)
+			{				
+				return false;
+			}
+			else
+			{
+				GetPayed();
+				return true;
+			}
+		}
+
 		public void GetPayed()
 		{
 			State = true;
