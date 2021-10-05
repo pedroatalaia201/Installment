@@ -36,7 +36,10 @@ namespace Installment.Entities
 			double total = 0;
 			foreach(InstallmentsPay pay in Installments)
 			{
-				total += pay.Value;
+				if(pay.State == false)
+				{
+					total += pay.Value;
+				}
 			}
 			return total;
 		}
