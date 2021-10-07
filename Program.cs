@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Collections.Generic;
 using Installment.Entities;
+using Installment.Entities.Exceptions;
 
 namespace Installment
 {
@@ -54,20 +55,11 @@ namespace Installment
 					}
 					default:
 					{
-						InvalidOption(option);
-						break;
+						throw new DomainException("This option in not valid\n");
 					}
 					
 				}
 			}
-		}
-	
-		static void InvalidOption(int option)
-		{
-			Console.WriteLine("\nthe option " + option + " is not valid\n\n");
-			Console.ReadLine();
-			Console.Clear();
-			return;
 		}
 	}
 }					

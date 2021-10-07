@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using Installment.Entities.Exceptions;
 
 namespace Installment.Entities
 {
@@ -34,8 +35,6 @@ namespace Installment.Entities
 				Console.WriteLine("Client name: " + name + ", Id: " + id);
 				Console.WriteLine("With a installment of U$: " + value.ToString("F2", CultureInfo.InvariantCulture));
 				Console.WriteLine("press Enter to continue...");
-
-				id++;
 			}
 			else
 			{
@@ -74,14 +73,11 @@ namespace Installment.Entities
 				else
 				{
 					mess++;	
+					if(mess == Clients.Count)
+					{
+						throw new DomainException("Client was not found...");
+					}
 				}
-			}
-
-			if(mess == Clients.Capacity)
-			{
-				Console.WriteLine("The client was not found");
-				Console.ReadLine();
-				return;
 			}
 
 			Console.WriteLine("That new debt was registred");
@@ -91,7 +87,6 @@ namespace Installment.Entities
 			return;
 		}
 	
-	//Não consegue acessar os valores Date e Value de InstallmentsPay.
 		public void RegisterPayment()
 		{
 			Console.Clear();
