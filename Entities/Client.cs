@@ -94,8 +94,7 @@ namespace Installment.Entities
 				Console.WriteLine("This installment has already been payed.");
 				Console.ReadLine();
 				return;
-			}				
-			
+			}							
 		}
 	}
 }

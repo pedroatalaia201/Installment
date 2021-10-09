@@ -69,6 +69,8 @@ namespace Installment
 					{
 						Console.Write("ERROR: ");
 						Console.WriteLine(e);
+						Console.ReadLine();
+						Console.Clear();
 					}
 				}	 
 			}

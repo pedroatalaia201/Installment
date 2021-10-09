@@ -9,7 +9,7 @@ namespace Installment.Entities
 	{
 		public List<Client> Clients{get; set;} = new List<Client>();
 		
-	
+		//adiciona um novo cliente na lista
 		public void AddClient(int id)
 		{
 			Console.Clear();
@@ -41,7 +41,7 @@ namespace Installment.Entities
 				Console.WriteLine("\n\nThe client is registred:");
 				Console.WriteLine("Client name: " + name + ", Id: " + id);
 				Console.WriteLine("press Enter to continue...");
-			}
+			} 
 
 			else
 			{
@@ -50,13 +50,12 @@ namespace Installment.Entities
 				
 			Console.ReadLine();
 			Console.Clear();
-			return;
 		}
-	//need to be optimazed....
+		//adiciona uma nova parcela:
 		public void AddInstallment()
 		{
 			Console.Clear();
-			int mess = 0;
+			int miss = 0;
 
 			Console.WriteLine("Write the data of the client");
 			Console.Write("Name: ");
@@ -76,8 +75,8 @@ namespace Installment.Entities
 				}
 				else
 				{
-					mess++;	
-					if(mess == Clients.Count)
+					miss += ContMiss();
+					if(miss == Clients.Count)
 					{
 						throw new DomainException("Client was not found...");
 					}
@@ -88,9 +87,8 @@ namespace Installment.Entities
 			Console.WriteLine("press enter to continue...");
 			Console.ReadLine();
 			Console.Clear();
-			return;
 		}
-	
+		//registra os pagamentos das parcelas
 		public void RegisterPayment()
 		{
 			Console.Clear();
@@ -99,6 +97,8 @@ namespace Installment.Entities
 			Console.Write("The Id of the client: ");
 			int id = int.Parse(Console.ReadLine());
 
+			int count = 0;
+
 			foreach(Client client in Clients)
 			{
 				if(client.ClientName == name && client.Id == id)
@@ -106,12 +106,27 @@ namespace Installment.Entities
 					Console.Clear();
 					Console.WriteLine("Installments of the client " + name + ", Id: " + id);
 					client.ListToPay();
-				}			
+					Console.Clear();
+					return;
+				}
+				else
+				{
+					count += ContMiss();
+					if(count == Clients.Count)
+					{
+						throw new DomainException("Client not found...");
+					}
+				}	
 			}
 
 			Console.ReadLine();
 		}
-	
+		//auxiliar
+		private int ContMiss()
+		{
+			return 1;
+		}
+		//exibe uma lista com o os clientes e o total de parcelas de cada um.
 		public void PrintList()
 		{
 			Console.Clear();
@@ -125,7 +140,6 @@ namespace Installment.Entities
 			}
 			Console.WriteLine("\npress Enter to exit...");
 			Console.ReadLine();
-		}
-	
+		}	
 	}
 }
