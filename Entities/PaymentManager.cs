@@ -19,8 +19,7 @@ namespace Installment.Entities
 			Console.WriteLine("There will be a installmet for this client?(y/n)");
 			char op = char.Parse(Console.ReadLine());
 
-			
-
+		
 			if(op == 'y')
 			{
 				Console.Write("Data of the installment(dd/mm/yyyy): ");
@@ -36,14 +35,19 @@ namespace Installment.Entities
 				Console.WriteLine("With a installment of U$: " + value.ToString("F2", CultureInfo.InvariantCulture));
 				Console.WriteLine("press Enter to continue...");
 			}
-			else
+			if(op == 'n')
 			{
 				Clients.Add(new Client(id, name));
 				Console.WriteLine("\n\nThe client is registred:");
 				Console.WriteLine("Client name: " + name + ", Id: " + id);
 				Console.WriteLine("press Enter to continue...");
 			}
-		
+
+			else
+			{
+				throw new DomainException("This option in not valid\n");
+			}
+				
 			Console.ReadLine();
 			Console.Clear();
 			return;
@@ -59,15 +63,15 @@ namespace Installment.Entities
 			string name = Console.ReadLine();
 			Console.Write("The id of the client: ");
 			int idSearch = int.Parse(Console.ReadLine());
-			Console.Write("Define the value of this new installment U$: ");
-			double value = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-			Console.Write("The date os this new installment(dd/mm/yyyy): ");
-			DateTime date = DateTime.ParseExact(Console.ReadLine(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
 			foreach(Client client in Clients)
 			{
 				if(client.ClientName == name && client.Id == idSearch)
 				{
+					Console.Write("Define the value of this new installment U$: ");
+					double value = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+					Console.Write("The date os this new installment(dd/mm/yyyy): ");
+					DateTime date = DateTime.ParseExact(Console.ReadLine(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
 					client.AddNewInst(new InstallmentsPay(date, value));
 				}
 				else
